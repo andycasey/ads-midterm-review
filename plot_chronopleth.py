@@ -11,6 +11,34 @@ from spacy.matcher import PhraseMatcher
 import requests
 from tqdm import tqdm
 
+import matplotlib
+import matplotlib.pyplot as plt
+
+matplotlib.style.use({
+
+    # Lines
+    'lines.linewidth': 1.7,
+    'lines.antialiased': True,
+    'lines.marker': '.',
+    'lines.markersize': 5.,
+
+    # Patches
+    'patch.linewidth': 1.0,
+    'patch.facecolor': '#348ABD',
+    'patch.edgecolor': '#CCCCCC',
+    'patch.antialiased': True,
+
+    # images
+    'image.origin': 'upper',
+
+    # Font
+    'font.size': 12.0,
+    'text.usetex': True,
+    'text.latex.preamble': r'\usepackage{amsmath}',
+    'text.latex.preview': True,
+    'axes.unicode_minus': False,
+})
+
 class RESTCountriesComponent(object):
     """spaCy v2.0 pipeline component that requests all countries via
     the REST Countries API, merges country names into one token, assigns entity
@@ -158,3 +186,46 @@ for country, number in counts.items():
 
 with open("chronopleth_data.csv", "w") as fp:
     fp.write(rows)
+
+
+
+# Now plot a bar graph.
+def plot_bar_graph(country_counts, n_countries=15):
+
+    counts_ = country_counts.copy()
+    counts_.pop("Australia")
+    # Rename a few.
+    rename = {
+        "United States of America": "USA",
+        "United Kingdom": "UK"
+    }
+    for before, after in rename.items():
+        counts_[after] = counts_.pop(before)
+
+    x = {k: v for k, v in sorted(counts_.items(), key=lambda item: item[1], reverse=True)}
+
+    fig, ax = plt.subplots()
+
+    ypos = np.arange(n_countries)
+    yticklabels = list(x.keys())[:n_countries]
+    #yticklabels = [" ".join([r"$\textrm{{{0}}}$".format(foo) for foo in ea.split()]) for ea in yticklabels]
+    yticklabels = [r"$\textrm{{{0}}}$".format(ea) for ea in yticklabels]
+
+    ax.barh(ypos, list(x.values())[:n_countries], align="center", facecolor="tab:blue")
+
+    ax.set_yticks(ypos)
+    ax.set_yticklabels(yticklabels)
+    ax.yaxis.set_tick_params(width=0)
+
+    w = 0.75
+    ax.set_ylim(ypos[-1] + w, -w)
+
+    ax.set_yxabel(r"$\textrm{Number of collaborations}$")
+    fig.tight_layout()
+
+    return fig
+
+
+fig = plot_bar_graph(counts, n_countries=15)
+fig.savefig("collaboration_frequency.pdf", dpi=600)
+
