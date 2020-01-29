@@ -1,0 +1,12 @@
+name: midterm-review
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - python=3.7
+  - numpy
+  - matplotlib
+  - cartopy
+  - ipython
+  - pip
+  - spacy  # and spacy download model en_core_web_sm
