@@ -153,6 +153,7 @@ rest_countries = RESTCountriesComponent(nlp)
 nlp.add_pipe(rest_countries)
 
 counts = dict()
+unique_papers = dict()
 
 n_affiliations_without_identified_countries, n_affiliations_total = (0, 0)
 abbreviations = dict(rest_countries.abbreviations)
@@ -160,6 +161,9 @@ abbreviations = dict(rest_countries.abbreviations)
 with tqdm(total=len(library)) as pbar:
 
     for bibcode, article in library.items():
+
+        unique_countries = []
+
         for affiliations in article["aff"]:
             for doc in map(nlp, affiliations.split("; ")):
                 n_affiliations_total += 1
@@ -169,10 +173,17 @@ with tqdm(total=len(library)) as pbar:
                         token_as_str = abbreviations.get(token_as_str, token_as_str)
                         counts.setdefault(token_as_str, 0)
                         counts[token_as_str] += 1
+                        unique_countries.append(token_as_str)
                         break
 
                 else:
                     n_affiliations_without_identified_countries += 1
+        
+        year = int(article["year"])
+        if year >= 1996 and year <= 2019:
+            for unique_country in set(unique_countries):
+                unique_papers.setdefault(unique_country, 0)
+                unique_papers[unique_country] += 1
 
         f_identified = 1 - n_affiliations_without_identified_countries/n_affiliations_total
         pbar.set_description(f"Fraction of affiliations with identified countries: {f_identified:.2f}")
@@ -187,7 +198,14 @@ for country, number in counts.items():
 with open("chronopleth_data.csv", "w") as fp:
     fp.write(rows)
 
+unique_papers_per_country_rows = "name,code,number\n"
+for country, number in unique_papers.items():
+    code = rest_countries.countries[country]["alpha3Code"]
+    unique_papers_per_country_rows += f"{country},{code},{number}\n"
 
+
+with open("unique_papers_per_country_1996_2019.csv", "w") as fp:
+    fp.write(unique_papers_per_country_rows)
 
 # Now plot a bar graph.
 def plot_bar_graph(country_counts, n_countries=15):
@@ -220,7 +238,7 @@ def plot_bar_graph(country_counts, n_countries=15):
     w = 0.75
     ax.set_ylim(ypos[-1] + w, -w)
 
-    ax.set_yxabel(r"$\textrm{Number of collaborations}$")
+    ax.set_xlabel(r"$\textrm{Number of collaborations}$")
     fig.tight_layout()
 
     return fig

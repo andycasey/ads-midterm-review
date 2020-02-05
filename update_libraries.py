@@ -4,8 +4,8 @@ Update (local) libraries that we will use for the National Committee of Astronom
 """
 
 import ads
-import yaml
 import os
+import pickle
 import warnings
 from tqdm import tqdm
 
@@ -23,7 +23,7 @@ else:
         library = pickle.load(fp)
 
 articles = ads.SearchQuery(q=query_string,
-                            fl=["bibcode", "year", "aff", "citation", "reference"],
+                            fl=["bibcode", "year", "aff", "author", "citation", "reference"],
                             rows=200, max_pages=100)
                             
 # Execute now so we can get the total number of pages.
