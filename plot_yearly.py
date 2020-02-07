@@ -8,6 +8,7 @@ import pickle
 import numpy as np
 import matplotlib
 import matplotlib.pyplot as plt
+from astropy.table import Table
 
 matplotlib.style.use({
 
@@ -47,25 +48,28 @@ def plot_papers_by_year(years, rotation=60, **kwargs):
     """
 
     #years = [int(article.year) for article in articles]
-    unique_years = np.arange(min(years), 2 + max(years))
+    unique_years = np.arange(min(years), 2 + max(years)) - 0.5
 
     hist_kwds = dict(rwidth=0.95, facecolor="#CCCCCC", bins=unique_years)
     hist_kwds.update(kwargs)
 
     fig, ax = plt.subplots()
-    ax.hist(years, **hist_kwds)
+    counts, years, *_ = ax.hist(years, **hist_kwds)
+
+    years = unique_years[1:].astype(int)
+    data = Table(data=dict(years=years, unique_article_count=counts))
 
     ticks = unique_years[:-1]
 
     ax.set_xticks(ticks + 0.5)
-    ax.set_xticklabels([r"${0}$".format(year) for year in ticks],
+    ax.set_xticklabels([r"${0}$".format(year) for year in years],
                        rotation=rotation)
     #ax.set_xlabel(r"$\textrm{Year}$")
     ax.set_ylabel(r"$\textrm{Unique article count}$")
     ax.set_xlim(ticks[0] - 0.25, ticks[-1] + 1.25)
     fig.tight_layout()
 
-    return fig
+    return (fig, data)
 
 
 
@@ -76,6 +80,8 @@ def _parse_author(name):
             return None
 
     last_name, *_ = name.split(",")
+    if len(_) == 0:
+        _.append("")
     return f"{last_name.strip()}, {_[0].strip()[:1].upper()}"
 
 def _is_australian_affiliation(affiliation):
@@ -135,19 +141,22 @@ def plot_unique_authors_by_year(library, rotation=60, **kwargs):
     ax.set_xlim(unique_years[0] - 0.75, unique_years[-1] + 0.75)
     fig.tight_layout()
 
-    return fig
+    t = Table(rows=unique_authors_per_year, names=("year", "unique_author_count"))
+    return (fig, t)
 
 
 
 
 if __name__ == "__main__":
 
-    with open("1996-2018-hiif.pkl", "rb") as fp:
+    with open("1996-2019-hiif.pkl", "rb") as fp:
         library = pickle.load(fp)
 
-    fig = plot_unique_authors_by_year(library)
+    fig, data = plot_unique_authors_by_year(library)
+    data.write("unique_australian_authors_by_year.csv")
     fig.savefig("unique_australian_authors_by_year.pdf", dpi=600)
 
     years = np.array([article["year"] for article in library.values()]).astype(int)
-    fig = plot_papers_by_year(years, facecolor="tab:blue")
+    fig, data = plot_papers_by_year(years, facecolor="tab:blue")
+    data.write("papers_by_year.csv")
     fig.savefig("papers_by_year.pdf", dpi=600)

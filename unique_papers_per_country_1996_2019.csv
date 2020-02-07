@@ -1,87 +1,91 @@
 name,code,number
-United States of America,USA,5271
-Australia,AUS,11362
-India,IND,451
-New Zealand,NZL,357
-Portugal,PRT,221
-Sweden,SWE,596
-Spain,ESP,1448
-Germany,DEU,3523
-France,FRA,2166
-United Kingdom,GBR,3351
-Chile,CHL,1459
-Netherlands,NLD,1700
-Canada,CAN,1520
-Switzerland,CHE,618
-Thailand,THA,23
-Italy,ITA,1824
-Japan,JPN,927
-Morocco,MAR,5
-Romania,ROU,49
-South Africa,ZAF,926
-Slovenia,SVN,123
-Denmark,DNK,669
-Belgium,BEL,463
-Finland,FIN,212
-Israel,ISR,243
-Austria,AUT,410
-Poland,POL,444
-Algeria,DZA,11
-Greece,GRC,145
-Ireland,IRL,215
-Brazil,BRA,471
-Czech Republic,CZE,135
-China,CHN,684
-Hungary,HUN,232
-Mexico,MEX,495
-Taiwan,TWN,151
-Hong Kong,HKG,69
-Iceland,ISL,17
-Armenia,ARM,93
-Namibia,NAM,89
-Norway,NOR,57
-Georgia,GEO,112
-Turkey,TUR,63
-Argentina,ARG,137
-Estonia,EST,16
-Kazakhstan,KAZ,5
-Saudi Arabia,SAU,87
-Ukraine,UKR,72
-Jersey,JEY,51
-United Arab Emirates,ARE,17
-Bulgaria,BGR,17
-Cyprus,CYP,11
-Serbia,SRB,24
+United States of America,USA,5934
+Australia,AUS,12452
+India,IND,539
+New Zealand,NZL,391
+Germany,DEU,3935
+United Kingdom,GBR,3846
+France,FRA,2435
+Portugal,PRT,259
+Chile,CHL,1654
+Spain,ESP,1638
+Sweden,SWE,683
+Netherlands,NLD,1963
+Canada,CAN,1712
+Switzerland,CHE,740
+Italy,ITA,2079
+Japan,JPN,1073
+Morocco,MAR,13
+Romania,ROU,55
+Thailand,THA,31
+South Africa,ZAF,1047
+Slovenia,SVN,137
+Denmark,DNK,795
+Belgium,BEL,533
+Greece,GRC,163
+China,CHN,854
+Hungary,HUN,284
+Austria,AUT,444
+Algeria,DZA,13
+Israel,ISR,275
+Poland,POL,517
+Ireland,IRL,254
+Brazil,BRA,561
+Czech Republic,CZE,148
+Finland,FIN,227
+Taiwan,TWN,198
+Mexico,MEX,546
+Hong Kong,HKG,84
+Iceland,ISL,27
+Lithuania,LTU,34
+Turkey,TUR,70
+Armenia,ARM,100
+Namibia,NAM,100
+Norway,NOR,61
+Georgia,GEO,141
+Monaco,MCO,10
+Argentina,ARG,147
+Estonia,EST,17
+Saudi Arabia,SAU,89
+Kazakhstan,KAZ,6
+Ukraine,UKR,78
+Jersey,JEY,63
+United Arab Emirates,ARE,25
+Serbia,SRB,29
+Bulgaria,BGR,20
+Cyprus,CYP,12
 Puerto Rico,PRI,17
-Croatia,HRV,79
-Colombia,COL,19
-Malta,MLT,6
-Uzbekistan,UZB,15
-Réunion,REU,2
+Uganda,UGA,3
+Croatia,HRV,81
+Colombia,COL,21
+Malta,MLT,7
+Uzbekistan,UZB,17
 Uruguay,URY,1
+Réunion,REU,2
 Lebanon,LBN,6
-Lithuania,LTU,27
 Qatar,QAT,35
 Kuwait,KWT,7
-Russian Federation,RUS,5
+Russian Federation,RUS,6
 French Polynesia,PYF,10
-Singapore,SGP,6
+Singapore,SGP,8
 Chad,TCD,2
 Montenegro,MNE,1
 Botswana,BWA,1
 Nepal,NPL,1
-Ecuador,ECU,1
+Ecuador,ECU,2
 Malaysia,MYS,6
 Zambia,ZMB,3
 Zimbabwe,ZWE,1
 Indonesia,IDN,3
-Egypt,EGY,12
-Nigeria,NGA,2
+Egypt,EGY,14
+Nigeria,NGA,3
+Rwanda,RWA,1
 Cuba,CUB,5
+Madagascar,MDG,1
 Viet Nam,VNM,2
-Slovakia,SVK,7
-Burkina Faso,BFA,2
-Ethiopia,ETH,2
+Slovakia,SVK,8
+Burkina Faso,BFA,3
+Ethiopia,ETH,3
 Antarctica,ATA,2
 Andorra,AND,1
 Tajikistan,TJK,1
@@ -90,10 +94,10 @@ Iraq,IRQ,4
 Holy See,VAT,1
 Sudan,SDN,1
 Peru,PER,1
-Uganda,UGA,2
 Pakistan,PAK,1
 Philippines,PHL,1
 Barbados,BRB,2
 San Marino,SMR,1
 Latvia,LVA,1
 Jordan,JOR,1
+Azerbaijan,AZE,1

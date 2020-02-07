@@ -134,7 +134,7 @@ class RESTCountriesComponent(object):
         return any([t._.get("is_country") for t in tokens])
 
 
-LIBRARY_PATH = "1996-2018-hiif.pkl"
+LIBRARY_PATH = "1996-2019-hiif.pkl"
 
 
 with open(LIBRARY_PATH, "rb") as fp:

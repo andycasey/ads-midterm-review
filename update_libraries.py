@@ -10,8 +10,8 @@ import warnings
 from tqdm import tqdm
 
 # TODO: In the future we should periodically update a remote library and not use this (expensive) query to update a local one.
-library_path = "1996-2018-hiif.pkl"
-query_string = "aff:(\"Australia\") year:1996-2018 property:refereed bibstem:(MNRAS OR ApJ OR ApJS OR AJ OR AJS OR A&A OR ARA&A OR PASA)"
+library_path = "1996-2019-hiif.pkl"
+query_string = "aff:(\"Australia\") year:1996-2019 property:refereed bibstem:(MNRAS OR ApJ OR ApJS OR AJ OR AJS OR A&A OR ARA&A OR PASA)"
 
 
 if not os.path.exists(library_path):
